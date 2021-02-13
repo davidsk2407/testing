@@ -1,0 +1,43 @@
+cmake_minimum_required(VERSION 3.1)
+cmake_policy(SET CMP0079 NEW)
+
+set(SOURCES
+	../../game/src/test/GameObjectTest.cpp
+)
+
+add_executable(${PROJECT_NAME}_Some ${SOURCES})
+add_executable(${PROJECT_NAME}_FailTest ${SOURCES})
+add_executable(${PROJECT_NAME}_CreateObject ${SOURCES})
+
+target_link_libraries(
+		${PROJECT_NAME}_FailTest PUBLIC
+		gtest_main
+		CoolGame
+)
+
+target_link_libraries(
+		${PROJECT_NAME}_CreateObject PUBLIC
+		gtest_main
+		CoolGame
+)
+
+target_link_libraries(
+		${PROJECT_NAME}_Some PUBLIC
+		gtest_main
+		CoolGame
+)
+
+add_test (
+	NAME ${PROJECT_NAME}_CreateObject
+	COMMAND ${PROJECT_NAME}_CreateObject
+)
+
+add_test (
+	NAME ${PROJECT_NAME}_FailTest
+	COMMAND ${PROJECT_NAME}_FailTest
+)
+
+add_test (
+	NAME ${PROJECT_NAME}_Some
+	COMMAND ${PROJECT_NAME}_Some
+)
